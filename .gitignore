@@ -1,0 +1,17 @@
+# Maven
+target/
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
