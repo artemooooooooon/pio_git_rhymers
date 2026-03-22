@@ -1,0 +1,31 @@
+# Maven
+/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Logs
+*.log
+
+# OS (Windows / Mac)
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+
+# Build files
+dependency-reduced-pom.xml
+
+# Java
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
