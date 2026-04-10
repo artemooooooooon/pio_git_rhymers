@@ -75,4 +75,64 @@ public class RhymersJUnitTest {
         Assert.assertEquals(EMPTY_STACK_VALUE, result);
     }
 
+    @Test
+    public void testFifoOrder() {
+        FIFORhymer fifo = new FIFORhymer();
+        fifo.countIn(1);
+        fifo.countIn(2);
+        fifo.countIn(3);
+
+        Assert.assertEquals(1, fifo.countOut());
+        Assert.assertEquals(2, fifo.countOut());
+        Assert.assertEquals(3, fifo.countOut());
+    }
+
+    @Test
+    public void testFifoEmptyReturnsMinusOne() {
+        FIFORhymer fifo = new FIFORhymer();
+        Assert.assertEquals(-1, fifo.countOut());
+    }
+
+    @Test
+    public void testFifoIsEmptyAfterDrain() {
+        FIFORhymer fifo = new FIFORhymer();
+        fifo.countIn(7);
+        fifo.countOut();
+        Assert.assertTrue(fifo.callCheck());
+    }
+
+    @Test
+    public void testHanoiRejectsLargerNumbers() {
+        HanoiRhymer hanoi = new HanoiRhymer();
+        hanoi.countIn(5);
+        hanoi.countIn(10);
+
+        Assert.assertEquals(1, hanoi.reportRejected());
+        Assert.assertEquals(5, hanoi.peekaboo());
+    }
+
+    @Test
+    public void testHanoiAcceptsSmallerOrEqualNumbers() {
+        HanoiRhymer hanoi = new HanoiRhymer();
+        hanoi.countIn(10);
+        hanoi.countIn(5); // 5 <= 10 – should be accepted
+
+        Assert.assertEquals(0, hanoi.reportRejected());
+        Assert.assertEquals(5, hanoi.peekaboo());
+    }
+
+    @Test
+    public void testHanoiReportRejectedInitiallyZero() {
+        HanoiRhymer hanoi = new HanoiRhymer();
+        Assert.assertEquals(0, hanoi.reportRejected());
+    }
+
+    @Test
+    public void testHanoiFirstElementAlwaysAccepted() {
+        HanoiRhymer hanoi = new HanoiRhymer();
+        hanoi.countIn(99);
+        Assert.assertEquals(0, hanoi.reportRejected());
+        Assert.assertFalse(hanoi.callCheck());
+    }
+
 }
